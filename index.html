@@ -1,46 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>Game Tebak Angka</title>
+<meta charset="UTF-8">
+<title>Roblox Mini Game SUPER EPIC ONLINE</title>
+<style>
+body{
+  margin:0; font-family:Arial,sans-serif; overflow:hidden;
+  background: linear-gradient(135deg,#00c6ff,#0072ff);
+  animation:bgAnim 15s ease infinite; color:white; text-align:center;
+}
+@keyframes bgAnim{
+  0%{background:linear-gradient(135deg,#00c6ff,#0072ff);}
+  25%{background:linear-gradient(135deg,#ff5f6d,#ffc371);}
+  50%{background:linear-gradient(135deg,#9b5de5,#f15bb5);}
+  75%{background:linear-gradient(135deg,#00f5d4,#00bbf9);}
+  100%{background:linear-gradient(135deg,#00c6ff,#0072ff);}
+}
+h1{margin:10px;}
+.gameBox{
+  background: rgba(0,0,0,0.3); border-radius:15px;
+  display:inline-block; padding:20px; margin:10px; min-width:300px;
+}
+input{padding:10px;border-radius:8px;border:none;width:180px;}
+button{padding:10px 15px;border:none;border-radius:8px;background:#ffcc00;cursor:pointer;font-weight:bold;margin:5px;transition:0.2s;}
+button:hover{transform:scale(1.1);}
+.score{margin-top:10px;font-size:18px;}
+#log,#log2,#logObby{margin-top:10px;height:100px;overflow-y:auto;background:rgba(0,0,0,0.2);padding:10px;border-radius:10px;text-align:left;}
+.section-title{text-decoration:underline;font-size:20px;margin-bottom:5px;}
+#obbyArea{width:300px;height:150px;background:#111;margin:auto;margin-top:10px;position:relative;overflow:hidden;}
+.block{width:40px;height:40px;background:#ff4500;position:absolute;bottom:0;border-radius:5px;transition:0.3s;}
+#player{width:30px;height:30px;background:#00ff00;position:absolute;bottom:0;left:10px;border-radius:5px;transition:0.2s;}
+.confetti{position:absolute;width:10px;height:10px;border-radius:50%;background:yellow;animation:confettiAnim 1s forwards;}
+@keyframes confettiAnim{0%{transform:translateY(0) scale(1);opacity:1;}100%{transform:translateY(50px) scale(2);opacity:0;}}
+.leaderboard{margin-top:10px;background:rgba(255,255,255,0.1);padding:10px;border-radius:10px;text-align:left;max-height:120px;overflow-y:auto;}
+#musicControl{position:fixed;top:10px;right:10px;padding:10px 15px;background:#ffcc00;color:#000;border:none;border-radius:10px;cursor:pointer;font-weight:bold;z-index:100;}
+</style>
 </head>
 <body>
+<h1>🎮 Roblox Mini Game SUPER EPIC ONLINE</h1>
 
-  <h1>Game Tebak Angka</h1>
-  <p>Tebak angka dari 1 sampai 10</p>
+<div>
+Username: <input type="text" id="username" placeholder="Nama kamu">
+<button id="musicControl" onclick="toggleMusic()">Mute</button>
+</div>
 
-  <input type="number" id="input">
-  <button onclick="cek()">Cek</button>
+<div class="gameBox" id="sambungKata">
+  <div class="section-title">Sambung Kata</div>
+  <p>Kata awal: <b id="currentWord">Obby</b></p>
+  <input type="text" id="inputWord" placeholder="Masukkan kata...">
+  <button onclick="submitWord()">Kirim</button>
+  <div class="score" id="score">Skor:0 | Level:1</div>
+  <div id="log"></div>
+  <div class="leaderboard" id="leaderboardWord"><b>Leaderboard Sambung Kata:</b><br></div>
+</div>
 
-  <p id="hasil"></p>
-  <p id="skor">Skor: 0</p>
-
-  <script>
-    let angka = Math.floor(Math.random() * 10) + 1;
-    let skor = 0;
-
-    function cek() {
-      let input = document.getElementById("input").value;
-
-      if (input == angka) {
-        skor++;
-        document.getElementById("hasil").innerHTML = "Benar!";
-        document.getElementById("skor").innerHTML = "Skor: " + skor;
-        angka = Math.floor(Math.random() * 10) + 1;
-      } else if (input > angka) {
-        document.getElementById("hasil").innerHTML = "Terlalu besar!";
-      } else {
-        document.getElementById("hasil").innerHTML = "Terlalu kecil!";
-      }
-    }
-  </script>
-
-</body>
-</html>
-<html>
-<head>
-<title>Web Nadhif</title>
-</head>
-<body>
-<h1>Halo</h1>
-</body>
-</html>
+<div class="gameBox" id="tebakKata">
+  <div class="section-title">Tebak Kata</div>
+  <p>Kata: <b id="maskedWord">_ _ _ _</b></p>
+  <input type="text" id="guessLetter" maxlength="1" placeholder="Tebak huruf">
+  <button onclick="guess()">Tebak</button>
+  <div class="score" id="score2">Skor Tebak:0</div>
+  <div id="log2"></div>
+  <div class="leaderboard" id="leaderboardGuess"><b>Leaderboard
