@@ -138,3 +138,105 @@ function cekTebak(){
 </body>
 </html>
 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Game 2D Level 1</title>
+<style>
+  body { margin:0; overflow:hidden; background:#87CEEB; font-family:sans-serif; }
+  #game { position:relative; width:800px; height:400px; margin:20px auto; background:#8B4513; border:3px solid #000; }
+  #player { position:absolute; width:50px; height:50px; background:red; bottom:0; left:0; }
+  .coin { position:absolute; width:30px; height:30px; background:gold; border-radius:50%; }
+  .enemy { position:absolute; width:50px; height:50px; background:black; bottom:0; left:300px; }
+  #scoreboard { text-align:center; margin-top:10px; font-size:20px; color:#333; }
+</style>
+</head>
+<body>
+<div id="game">
+  <div id="player"></div>
+  <div class="enemy"></div>
+</div>
+<div id="scoreboard">Skor: 0</div>
+
+<script>
+const player = document.getElementById('player');
+const game = document.getElementById('game');
+const scoreboard = document.getElementById('scoreboard');
+let score = 0;
+let playerPos = { x:0, y:0, vy:0 };
+let gravity = -1;
+
+// Buat 5 koin acak
+for (let i=0; i<5; i++){
+  const coin = document.createElement('div');
+  coin.classList.add('coin');
+  coin.style.left = Math.random() * (game.offsetWidth - 30) + 'px';
+  coin.style.bottom = Math.random() * (game.offsetHeight - 30) + 'px';
+  game.appendChild(coin);
+}
+const coins = document.querySelectorAll('.coin');
+
+// Enemy gerak bolak-balik
+const enemy = document.querySelector('.enemy');
+let enemyDir = 1;
+function moveEnemy(){
+  let left = parseInt(enemy.style.left);
+  if (left >= game.offsetWidth - 50) enemyDir = -1;
+  if (left <= 0) enemyDir = 1;
+  enemy.style.left = (left + enemyDir * 5) + 'px';
+}
+setInterval(moveEnemy, 50);
+
+// Kontrol player
+let keys = {};
+document.addEventListener('keydown', (e)=>{ keys[e.key]=true; });
+document.addEventListener('keyup', (e)=>{ keys[e.key]=false; });
+
+function gameLoop(){
+  // Gerak kiri/kanan
+  if(keys['ArrowLeft']) playerPos.x = Math.max(0, playerPos.x - 10);
+  if(keys['ArrowRight']) playerPos.x = Math.min(game.offsetWidth-50, playerPos.x + 10);
+  
+  // Lompat
+  if(keys['ArrowUp'] && playerPos.y === 0) playerPos.vy = 15;
+  
+  // Gravity
+  playerPos.y += playerPos.vy;
+  playerPos.vy -= 1;
+  if(playerPos.y < 0){ playerPos.y = 0; playerPos.vy = 0; }
+
+  player.style.left = playerPos.x + 'px';
+  player.style.bottom = playerPos.y + 'px';
+
+  // Cek tabrakan koin
+  coins.forEach(coin => {
+    const coinRect = coin.getBoundingClientRect();
+    const playerRect = player.getBoundingClientRect();
+    if (!(playerRect.right < coinRect.left ||
+          playerRect.left > coinRect.right ||
+          playerRect.bottom < coinRect.top ||
+          playerRect.top > coinRect.bottom) && coin.style.display !== 'none'){
+      coin.style.display = 'none';
+      score += 1;
+      scoreboard.textContent = 'Skor: ' + score;
+    }
+  });
+
+  // Cek tabrakan enemy
+  const enemyRect = enemy.getBoundingClientRect();
+  const playerRect = player.getBoundingClientRect();
+  if (!(playerRect.right < enemyRect.left ||
+        playerRect.left > enemyRect.right ||
+        playerRect.bottom < enemyRect.top ||
+        playerRect.top > enemyRect.bottom)){
+    alert('Game Over! Skor kamu: ' + score);
+    location.reload();
+  }
+
+  requestAnimationFrame(gameLoop);
+}
+gameLoop();
+</script>
+</body>
+</html>
