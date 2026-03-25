@@ -240,3 +240,58 @@ gameLoop();
 </script>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Game 2D AI</title>
+<style>
+  body { margin:0; overflow:hidden; background:#87CEEB; font-family:sans-serif; }
+  #game { position:relative; width:800px; height:400px; margin:20px auto; background:#8B4513; border:3px solid #000; }
+  #player { position:absolute; width:50px; height:50px; background:red; bottom:0; left:50px; }
+  .coin { position:absolute; width:30px; height:30px; background:gold; border-radius:50%; }
+  .enemy { position:absolute; width:50px; height:50px; background:black; bottom:0; left:700px; }
+  #scoreboard { text-align:center; margin-top:10px; font-size:20px; color:#333; }
+</style>
+</head>
+<body>
+<div id="game">
+  <div id="player"></div>
+  <div class="enemy"></div>
+</div>
+<div id="scoreboard">Skor: 0</div>
+
+<script>
+const player = document.getElementById('player');
+const enemy = document.querySelector('.enemy');
+const game = document.getElementById('game');
+const scoreboard = document.getElementById('scoreboard');
+
+let score = 0;
+let playerPos = { x:50, y:0, vy:0 };
+let gravity = -1;
+
+// Buat 5 koin acak
+for(let i=0;i<5;i++){
+  const coin = document.createElement('div');
+  coin.classList.add('coin');
+  coin.style.left = Math.random()*(game.offsetWidth-30) + 'px';
+  coin.style.bottom = Math.random()*(game.offsetHeight-30) + 'px';
+  game.appendChild(coin);
+}
+const coins = document.querySelectorAll('.coin');
+
+// Kontrol player
+let keys = {};
+document.addEventListener('keydown',(e)=>{ keys[e.key]=true; });
+document.addEventListener('keyup',(e)=>{ keys[e.key]=false; });
+
+// Game loop
+function gameLoop(){
+  // Gerak kiri/kanan
+  if(keys['ArrowLeft']) playerPos.x = Math.max(0, playerPos.x - 10);
+  if(keys['ArrowRight']) playerPos.x = Math.min(game.offsetWidth-50, playerPos.x + 10);
+
+  // Lompat
+  if(keys['ArrowUp'] && playerPos.y===0) player
