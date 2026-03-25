@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Website Game Roblox</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    /* Bisa diganti link GitHub bg */
+    background: linear-gradient(rgba(0,255,0,0.5), rgba(0,200,0,0.5)), 
+                url('https://raw.githubusercontent.com/NamaUser/NamaRepo/main/bg_roblox.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    color: white;
+    text-align: center;
+    position: relative;
+  }
+
+  /* Tulisan Assalamualaikum di kanan atas */
+  .assalam {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px #000;
+  }
+
+  /* Papan Welcome di tengah */
+  .welcome-board {
+    width: 300px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: rgba(0, 128, 0, 0.8);
+    border: 5px solid #004d00;
+    border-radius: 15px;
+    box-shadow: 4px 4px 10px #000;
+  }
+
+  .welcome-board h1 {
+    margin: 0;
+    font-size: 36px;
+    color: white;
+    text-shadow: 2px 2px 4px #000;
+  }
+
+  /* Tombol Mini-Game */
+  .button {
+    display: inline-block;
+    padding: 15px 30px;
+    margin: 15px;
+    font-size: 18px;
+    color: white;
+    background: #ff4500;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 2px 2px 6px #000;
+  }
+
+  .button:hover {
+    background: #ff6347;
+  }
+
+</style>
+</head>
+<body>
+  <div class="assalam">Assalamualaikum</div>
+
+  <div class="welcome-board">
+    <h1>WELCOME</h1>
+    <p>Pilih game untuk dimainkan:</p>
+    <a href="https://www.roblox.com/games/123456789/ContohGame1" target="_blank" class="button">Game 1</a>
+    <a href="https://www.roblox.com/games/987654321/ContohGame2" target="_blank" class="button">Game 2</a>
+    <a href="https://www.roblox.com/games/112233445/ContohGame3" target="_blank" class="button">Game 3</a>
+  </div>
+</body>
+</html>
