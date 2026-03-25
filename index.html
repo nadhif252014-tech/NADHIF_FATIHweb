@@ -295,3 +295,76 @@ function gameLoop(){
 
   // Lompat
   if(keys['ArrowUp'] && playerPos.y===0) player
+
+  <!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Quiz Coding Seru</title>
+<style>
+  body { font-family:sans-serif; background:#87CEEB; margin:0; display:flex; justify-content:center; align-items:center; height:100vh; }
+  #game { background:#fff; padding:20px; border-radius:10px; width:500px; text-align:center; box-shadow:0 0 20px rgba(0,0,0,0.3); }
+  button { margin:10px; padding:10px 20px; font-size:16px; cursor:pointer; }
+  #score { font-size:18px; margin-bottom:10px; }
+</style>
+</head>
+<body>
+<div id="game">
+  <div id="score">Skor: 0</div>
+  <div id="question"></div>
+  <div id="answers"></div>
+</div>
+
+<script>
+const quiz = [
+  {
+    q: "Bahasa pemrograman untuk web yang berfungsi menata tampilan?",
+    options: ["Python","CSS","Java","C++"],
+    answer: "CSS"
+  },
+  {
+    q: "Fungsi 'print()' ada di bahasa?",
+    options: ["Python","HTML","CSS","JavaScript"],
+    answer: "Python"
+  },
+  {
+    q: "Tag HTML untuk membuat link?",
+    options: ["<a>","<p>","<div>","<img>"],
+    answer: "<a>"
+  },
+  {
+    q: "Simbol untuk komentar di JavaScript?",
+    options: ["//","<!-- -->","#","/* */"],
+    answer: "//"
+  }
+];
+
+let score = 0;
+let current = 0;
+
+function showQuestion(){
+  if(current >= quiz.length){
+    document.getElementById('game').innerHTML = `<h2>Quiz selesai!</h2><p>Skor kamu: ${score}</p>`;
+    return;
+  }
+  const q = quiz[current];
+  document.getElementById('question').textContent = q.q;
+  const ansDiv = document.getElementById('answers');
+  ansDiv.innerHTML = "";
+  q.options.forEach(opt=>{
+    const btn = document.createElement('button');
+    btn.textContent = opt;
+    btn.onclick = ()=>{
+      if(opt === q.answer) score += 1;
+      current +=1;
+      document.getElementById('score').textContent = "Skor: "+score;
+      showQuestion();
+    };
+    ansDiv.appendChild(btn);
+  });
+}
+
+showQuestion();
+</script>
+</body>
+</html>
