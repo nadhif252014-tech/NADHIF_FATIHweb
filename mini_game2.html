@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Website Game Roblox Mini</title>
+<style>
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background-color: #00ff00;
+  text-align:center;
+  color:white;
+}
+h1 {text-shadow:2px 2px 4px #000;}
+.button {
+  display:inline-block;
+  padding:10px 20px;
+  margin:10px;
+  background:#ff4500;
+  color:white;
+  text-decoration:none;
+  border-radius:8px;
+  box-shadow:2px 2px 5px #000;
+}
+.button:hover {background:#ff6347;}
+.game-section {
+  display:none;
+  margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<h1>WELCOME</h1>
+<p>Pilih Game:</p>
+<a href="#" class="button" onclick="showGame('tebak')">Tebak Angka</a>
+<a href="#" class="button" onclick="showGame('clicker')">Clicker Game</a>
+<a href="#" class="button" onclick="showGame('mtk')">Soal MTK</a>
+
+<!-- Tebak Angka -->
+<div id="tebak" class="game-section">
+  <h2>Tebak Angka 1-10</h2>
+  <input type="number" id="angkaTebak" min="1" max="10">
+  <button onclick="cekTebak()">Tebak!</button>
+  <p id="hasilTebak"></p>
+</div>
+
+<!-- Clicker -->
+<div id="clicker" class="game-section">
+  <h2>Clicker Game</h2>
+  <button onclick="klik()">Klik Aku!</button>
+  <p>Skor: <span id="skorClicker">0</span></p>
+</div>
+
+<!-- Soal MTK -->
+<div id="mtk" class="game-section">
+  <h2>Soal MTK</h2>
+  <p>5 + 3 = ?</p>
+  <button onclick="cekMTK(8)">8</button>
+  <button onclick="cekMTK(9)">9</button>
+  <button onclick="cekMTK(7)">7</button>
+  <p id="hasilMTK"></p>
+</div>
+
+<script>
+// Ganti tampilan game
+function showGame(game){
+  document.querySelectorAll('.game-section').forEach(s => s.style.display='none');
+  document.getElementById(game).style.display='block';
+}
+
+// Tebak Angka
+let angkaRandom = Math.floor(Math.random()*10)+1;
+function cekTebak(){
+  let guess = Number(document.getElementById('angkaTebak').value);
+  let hasil = document.getElementById('hasilTebak');
+  if(guess === angkaRandom){
+    hasil.innerText = 'Benar! 🎉';
+    angkaRandom = Math.floor(Math.random()*10)+1;
+  } else {
+    hasil.innerText = 'Salah! Coba lagi.';
+  }
+}
+
+// Clicker
+let skor = 0;
+function klik(){
+  skor++;
+  document.getElementById('skorClicker').innerText = skor;
+}
+
+// Soal MTK
+function cekMTK(jawaban){
+  let hasil = document.getElementById('hasilMTK');
+  if(jawaban === 8){
+    hasil.innerText = 'Benar! 🎉';
+  } else {
+    hasil.innerText = 'Salah! ❌';
+  }
+}
+</script>
+
+</body>
+</html>
