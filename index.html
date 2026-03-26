@@ -224,3 +224,53 @@ h1{
 
 </body>
 </html>
+
+  <!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Soundboard Antek Asing</title>
+<style>
+body{
+  background: linear-gradient(135deg,#111,#333);
+  color:white;
+  text-align:center;
+  font-family:Arial;
+  padding:20px;
+}
+button{
+  padding:15px 25px;
+  margin:10px;
+  font-size:18px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  background:#00ffcc;
+}
+button:hover{
+  background:#00ccaa;
+}
+</style>
+</head>
+<body>
+
+<h1>🔥 Soundboard Antek Asing 🔥</h1>
+
+<button onclick="playSound('sound1')">Antek Asing 1</button>
+<button onclick="playSound('sound2')">Antek Asing 2</button>
+<button onclick="playSound('sound3')">Antek Asing 3</button>
+
+<audio id="sound1" src="sound1.mp3"></audio>
+<audio id="sound2" src="sound2.mp3"></audio>
+<audio id="sound3" src="sound3.mp3"></audio>
+
+<script>
+function playSound(id){
+  let sound = document.getElementById(id);
+  sound.currentTime = 0;
+  sound.play();
+}
+</script>
+
+</body>
+</html>
