@@ -169,7 +169,115 @@ function cekTebak(){
 </head>
 <body>
 
-                <!DOCTYPE html>
+  <!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Game Rahasia Nadhif</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial;
+  background: linear-gradient(135deg,#000000,#001f3f);
+  color:white;
+  text-align:center;
+  padding-top:50px;
+}
+
+h1{ color: cyan; }
+
+input{
+  padding:10px;
+  font-size:16px;
+}
+
+button{
+  padding:10px 20px;
+  margin-top:10px;
+  background: cyan;
+  border:none;
+  cursor:pointer;
+}
+
+#secret, #kodeBox{
+  display:none;
+  margin-top:30px;
+  padding:20px;
+  border:2px solid cyan;
+  animation: glow 1s infinite alternate;
+}
+
+img{
+  width:200px;
+  margin-top:15px;
+  border-radius:10px;
+}
+
+@keyframes glow{
+  from{box-shadow:0 0 10px cyan;}
+  to{box-shadow:0 0 30px cyan;}
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎮 Game Rahasia Nadhif</h1>
+<p>Tebak angka 1 - 10 dulu!</p>
+
+<input type="number" id="tebakan">
+<br>
+<button onclick="cek()">Tebak!</button>
+
+<div id="hasil"></div>
+
+<div id="kodeBox">
+  <h3>🔐 Masukkan Kode Rahasia</h3>
+  <input type="password" id="kode">
+  <br>
+  <button onclick="cekKode()">Buka</button>
+</div>
+
+<div id="secret">
+  <h2>🎉 RUANG RAHASIA TERBUKA!</h2>
+  <p>Selamat datang di markas rahasia 😎🔥</p>
+
+  <h3>ANTEK ANTEK ASING 😈</h3>
+
+  <!-- Gambar Pak Prabowo -->
+  <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Prabowo_Subianto_2023.jpg">
+
+</div>
+
+<script>
+let angka = Math.floor(Math.random() * 10) + 1;
+
+function cek(){
+  let tebakan = document.getElementById("tebakan").value;
+  let hasil = document.getElementById("hasil");
+
+  if(tebakan == angka){
+    hasil.innerHTML = "🎉 BENAR! Sekarang masukkan kode!";
+    document.getElementById("kodeBox").style.display = "block";
+  } else {
+    hasil.innerHTML = "❌ Salah! Coba lagi!";
+  }
+}
+
+function cekKode(){
+  let kode = document.getElementById("kode").value;
+
+  if(kode === "2014"){
+    document.getElementById("secret").style.display = "block";
+  } else {
+    alert("Kode salah! 😈");
+  }
+}
+</script>
+
+</body>
+  
 <html lang="id">
 <head>
 <meta charset="UTF-8">
