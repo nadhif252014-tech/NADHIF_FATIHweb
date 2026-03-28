@@ -186,6 +186,81 @@ button{
   animation: glitch 0.15s infinite;
 }
 @keyframes glitch{
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Super Pintar</title>
+
+<style>
+body{
+  font-family: Arial;
+  background: linear-gradient(45deg,#1e3c72,#2a5298);
+  color:white;
+  text-align:center;
+}
+
+#chat{
+  width:90%;
+  max-width:420px;
+  height:350px;
+  background:white;
+  color:black;
+  margin:20px auto;
+  padding:10px;
+  overflow-y:auto;
+  border-radius:12px;
+}
+
+input{
+  padding:10px;
+  width:60%;
+  border-radius:10px;
+  border:none;
+}
+
+button{
+  padding:10px;
+  border:none;
+  border-radius:10px;
+  background:#fff;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>AI Super 🤖🔥</h1>
+
+<div id="chat"></div>
+
+<input type="text" id="input" placeholder="Ngobrol bebas...">
+<button onclick="kirim()">Kirim</button>
+
+<script>
+
+function mirip(a, b){
+  return a.includes(b) || b.includes(a);
+}
+
+function jawabAI(pesan){
+  pesan = pesan.toLowerCase();
+
+  if(mirip(pesan,"halo") || mirip(pesan,"hai"))
+    return "Halo! Ada yang ingin kamu tanyakan?";
+
+  if(pesan.includes("siapa kamu"))
+    return "Aku adalah chatbot sederhana yang dibuat dengan JavaScript.";
+
+  if(pesan.includes("apa itu ai"))
+    return "AI adalah teknologi yang memungkinkan komputer berpikir dan belajar seperti manusia.";
+
+  if(pesan.includes("kenapa"))
+    return "Biasanya itu terjadi karena banyak faktor. Bisa kamu jelaskan
+  
 <!DOCTYPE html>
 <html lang="id">
 <head>
